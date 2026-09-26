@@ -365,9 +365,9 @@
     ]}
   ];
 
-  // JS getDay(): 0 Sun ... 6 Sat. Map Mon-Fri (1-5) to days[0-4].
+  // JS getDay(): 0 Sun ... 6 Sat. Map Mon-Fri (1-5) to days[0-4]; weekend falls back to Monday.
   var jsDay = new Date().getDay();
-  var todayIndex = (jsDay >= 1 && jsDay <= 5) ? jsDay - 1 : -1;
+  var todayIndex = (jsDay >= 1 && jsDay <= 5) ? jsDay - 1 : 0;
 
   function el(tag, attrs, children) {
     var e = document.createElement(tag);
@@ -399,7 +399,7 @@
     tbody.appendChild(tr);
   });
   var headCells = document.querySelectorAll('.desktop-table thead th');
-  if (todayIndex >= 0) headCells[todayIndex + 2].classList.add('today-col');
+  headCells[todayIndex + 2].classList.add('today-col');
 
   // Build mobile tabs + day lists
   var tabsWrap = document.getElementById('dayTabs');
@@ -436,7 +436,7 @@
     });
   }
 
-  selectDay(todayIndex >= 0 ? todayIndex : 0);
+  selectDay(todayIndex);
 })();
 </script>
 
