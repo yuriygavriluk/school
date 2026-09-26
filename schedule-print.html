@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Розклад уроків 2-Б клас</title>
+<style>
+  @media print {
+    @page { size: landscape; margin: 0.6cm; }
+  }
+  body {
+    font-family: 'Comic Sans MS', 'Segoe Print', Arial, sans-serif;
+    margin: 8px;
+    color: #222;
+    background: white;
+  }
+  .frame {
+    border: 3px dashed #444;
+    border-radius: 14px;
+    padding: 8px 14px 10px;
+    position: relative;
+  }
+  .stars-top, .stars-bottom {
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 10px;
+    margin: 0 0 4px 0;
+    opacity: 0.8;
+  }
+  h1 {
+    text-align: center;
+    font-size: 21px;
+    margin: 2px 0 2px 0;
+  }
+  h1 .deco {
+    font-size: 18px;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 11px;
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+  .update-note {
+    text-align: center;
+    font-size: 10px;
+    margin-bottom: 6px;
+    color: #555;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 12px;
+  }
+  th, td {
+    border: 1.5px solid #333;
+    padding: 4px 4px;
+    text-align: center;
+  }
+  th {
+    background-color: #fff;
+    border-bottom: 2px solid #333;
+    font-size: 13px;
+  }
+  td.time {
+    font-weight: bold;
+    white-space: nowrap;
+    font-size: 10px;
+  }
+  .subject {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+    line-height: 1.15;
+  }
+  .subject .emoji {
+    font-size: 13px;
+  }
+  tr:nth-child(even) {
+    background-color: #f7f7f7;
+  }
+  .changed {
+    outline: 1.5px dotted #333;
+    outline-offset: -2px;
+  }
+  .footer-row {
+    text-align: center;
+    margin-top: 6px;
+    font-size: 14px;
+    letter-spacing: 8px;
+    opacity: 0.7;
+  }
+  .corner {
+    position: absolute;
+    font-size: 15px;
+  }
+  .corner.tl { top: 4px; left: 8px; }
+  .corner.tr { top: 4px; right: 8px; }
+  .corner.bl { bottom: 4px; left: 8px; }
+  .corner.br { bottom: 4px; right: 8px; }
+  .legend {
+    text-align: center;
+    font-size: 9px;
+    margin-top: 4px;
+    color: #555;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    color: #445;
+    text-decoration: none;
+  }
+  .back-link:hover { text-decoration: underline; }
+  @media print {
+    .back-link { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="back-link" href="index.html">← До головної сторінки</a>
+<div class="frame">
+  <span class="corner tl">✏️</span>
+  <span class="corner tr">📏</span>
+  <span class="corner bl">🖍️</span>
+  <span class="corner br">📚</span>
+
+  <div class="stars-top">★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★</div>
+  <h1><span class="deco">🎒</span> Розклад уроків 2-Б клас <span class="deco">🎨</span></h1>
+  <div class="subtitle">~ хай кожен день буде цікавим! ~</div>
+  <div class="update-note">Оновлено: зміни в розкладі понеділка (14.09) та вівторка (15.09) — позначені пунктирною рамкою</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>№</th>
+        <th>Дзвінки</th>
+        <th>Понеділок</th>
+        <th>Вівторок</th>
+        <th>Середа</th>
+        <th>Четвер</th>
+        <th>П'ятниця</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td class="time">8:15–8:40</td>
+        <td class="changed"><div class="subject"><span class="emoji">🤝</span>Коло друзів</div></td>
+        <td class="changed"><div class="subject"><span class="emoji">🤝</span>Коло друзів</div></td>
+        <td><div class="subject"><span class="emoji">🤝</span>Коло друзів</div></td>
+        <td><div class="subject"><span class="emoji">🤝</span>Коло друзів</div></td>
+        <td><div class="subject"><span class="emoji">🤝</span>Коло друзів</div></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td class="time">8:55–9:30</td>
+        <td class="changed"><div class="subject"><span class="emoji">🔢</span>Математика</div></td>
+        <td class="changed"><div class="subject"><span class="emoji">🔢</span>Математика</div></td>
+        <td><div class="subject"><span class="emoji">🔢</span>Математика</div></td>
+        <td><div class="subject"><span class="emoji">🔢</span>Математика</div></td>
+        <td><div class="subject"><span class="emoji">🎵</span>Музика</div></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td class="time">9:45–10:20</td>
+        <td class="changed"><div class="subject"><span class="emoji">🌱</span>ЯДС</div></td>
+        <td class="changed"><div class="subject"><span class="emoji">📖</span>Укр. мова</div></td>
+        <td><div class="subject"><span class="emoji">📕</span>Укр. чит.</div></td>
+        <td><div class="subject"><span class="emoji">⚽</span>Фізкультура</div></td>
+        <td><div class="subject"><span class="emoji">🔢</span>Математика</div></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td class="time">10:35–11:10</td>
+        <td class="changed"><div class="subject"><span class="emoji">📖</span>Укр. мова</div></td>
+        <td class="changed"><div class="subject"><span class="emoji">📕</span>Укр. чит.</div></td>
+        <td><div class="subject"><span class="emoji">🌍</span>Англ. мова</div></td>
+        <td><div class="subject"><span class="emoji">🖌️</span>Образотв. мист.</div></td>
+        <td><div class="subject"><span class="emoji">📕</span>Укр. чит.</div></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td class="time">11:20–11:55</td>
+        <td class="changed"><div class="subject"><span class="emoji">💻</span>Інформатика</div></td>
+        <td class="changed"><div class="subject"><span class="emoji">⚽</span>Фізкультура</div></td>
+        <td><div class="subject"><span class="emoji">📖</span>Укр. мова</div></td>
+        <td><div class="subject"><span class="emoji">🌍</span>Англ. мова</div></td>
+        <td><div class="subject"><span class="emoji">💃</span>Хореографія</div></td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td class="time">12:15–12:50</td>
+        <td class="changed"><div class="subject"><span class="emoji">📕</span>Укр. чит.</div></td>
+        <td class="changed"><div class="subject"><span class="emoji">🌍</span>Англ. мова</div></td>
+        <td><div class="subject"><span class="emoji">🌱</span>ЯДС</div></td>
+        <td><div class="subject"><span class="emoji">📖</span>Укр. мова</div></td>
+        <td><div class="subject"><span class="emoji">⏰</span>Дин. година</div></td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td class="time">13:05–13:40</td>
+        <td class="changed"><div class="subject"><span class="emoji">🛡️</span>Самозахист(х)</div></td>
+        <td class="changed"><div class="subject"><span class="emoji">🎵</span>Музика</div></td>
+        <td><div class="subject"><span class="emoji">🎨</span>Арт-терапія</div></td>
+        <td><div class="subject"><span class="emoji">📚</span>Позакласне чит.</div></td>
+        <td><div class="subject"><span class="emoji">🌱</span>ЯДС</div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="legend">пунктирна рамка навколо клітинки = змінено з 14–15.09</div>
+  <div class="footer-row">✎ ✿ ✎ ✿ ✎ ✿ ✎ ✿ ✎ ✿ ✎</div>
+  <div class="stars-bottom">★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★</div>
+</div>
+
+</body>
+</html>

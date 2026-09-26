@@ -2,206 +2,489 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
-<title>Розклад уроків 2-Б клас</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Розклад уроків — 2-Б клас</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎒</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  @media print {
-    @page { size: landscape; margin: 0.6cm; }
+  :root {
+    --bg: #f4f2ff;
+    --bg-accent: #eef1ff;
+    --surface: #ffffff;
+    --text: #262338;
+    --muted: #6b6a80;
+    --border: #e6e3f7;
+    --accent: #6c5ce7;
+    --accent-dark: #5847d1;
+    --accent-soft: #efe9ff;
+    --changed-bg: #fff3d6;
+    --changed-border: #f4b942;
+    --shadow: 0 10px 30px -12px rgba(76, 63, 165, 0.25);
+    --today-ring: #6c5ce7;
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17162a;
+      --bg-accent: #1d1c33;
+      --surface: #221f3b;
+      --text: #ece9ff;
+      --muted: #a9a6c4;
+      --border: #322f52;
+      --accent: #9c8bff;
+      --accent-dark: #b5a7ff;
+      --accent-soft: #2a2650;
+      --changed-bg: #40371c;
+      --changed-border: #e8b23f;
+      --shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.55);
+      --today-ring: #9c8bff;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
   body {
-    font-family: 'Comic Sans MS', 'Segoe Print', Arial, sans-serif;
-    margin: 8px;
-    color: #222;
-    background: white;
+    margin: 0;
+    font-family: 'Nunito', Arial, sans-serif;
+    background:
+      radial-gradient(circle at 8% 0%, var(--bg-accent), transparent 45%),
+      radial-gradient(circle at 95% 12%, var(--bg-accent), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    min-height: 100vh;
   }
-  .frame {
-    border: 3px dashed #444;
-    border-radius: 14px;
-    padding: 8px 14px 10px;
-    position: relative;
+
+  .wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 28px 18px 60px;
   }
-  .stars-top, .stars-bottom {
+
+  header.hero {
     text-align: center;
-    font-size: 13px;
-    letter-spacing: 10px;
-    margin: 0 0 4px 0;
-    opacity: 0.8;
+    margin-bottom: 26px;
   }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+
   h1 {
-    text-align: center;
-    font-size: 21px;
-    margin: 2px 0 2px 0;
+    font-family: 'Comfortaa', cursive;
+    font-size: clamp(24px, 4.5vw, 36px);
+    margin: 0 0 8px;
   }
-  h1 .deco {
-    font-size: 18px;
-  }
+
   .subtitle {
-    text-align: center;
-    font-size: 11px;
-    margin-bottom: 6px;
-    font-style: italic;
+    color: var(--muted);
+    font-size: 15px;
+    margin: 0 0 16px;
   }
+
   .update-note {
-    text-align: center;
-    font-size: 10px;
-    margin-bottom: 6px;
-    color: #555;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 12px;
-  }
-  th, td {
-    border: 1.5px solid #333;
-    padding: 4px 4px;
-    text-align: center;
-  }
-  th {
-    background-color: #fff;
-    border-bottom: 2px solid #333;
+    display: inline-block;
     font-size: 13px;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px 14px;
+    box-shadow: var(--shadow);
   }
-  td.time {
-    font-weight: bold;
-    white-space: nowrap;
-    font-size: 10px;
-  }
-  .subject {
+
+  .actions {
     display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Nunito', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 11px 20px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 8px 20px -8px rgba(108, 92, 231, 0.6);
+  }
+  .btn-primary:hover { background: var(--accent-dark); }
+
+  .btn-ghost {
+    background: var(--surface);
+    color: var(--text);
+    border-color: var(--border);
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 20px;
+  }
+
+  .legend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 12.5px;
+    color: var(--muted);
+    margin: 16px 0 0;
+  }
+  .legend .swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    background: var(--changed-bg);
+    border: 1.5px solid var(--changed-border);
+    display: inline-block;
+  }
+
+  /* Desktop table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  caption { display: none; }
+  thead th {
+    font-family: 'Comfortaa', cursive;
+    font-size: 13px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    padding: 10px 6px;
+    border-bottom: 2px solid var(--border);
+  }
+  thead th.today-col {
+    color: var(--accent-dark);
+  }
+  tbody td {
+    padding: 10px 6px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  tbody tr:hover td { background: var(--bg-accent); }
+  td.time {
+    font-weight: 800;
+    font-size: 12.5px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  td.num {
+    color: var(--muted);
+    font-weight: 700;
+    width: 28px;
+  }
+  .subject-cell {
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
-    gap: 0px;
-    line-height: 1.15;
+    gap: 2px;
+    padding: 6px 8px;
+    border-radius: 10px;
+    line-height: 1.2;
+    min-width: 92px;
   }
-  .subject .emoji {
-    font-size: 13px;
+  .subject-cell .emoji { font-size: 16px; }
+  .subject-cell .name { font-weight: 700; font-size: 12.5px; }
+  td.changed .subject-cell {
+    background: var(--changed-bg);
+    outline: 1.5px dashed var(--changed-border);
   }
-  tr:nth-child(even) {
-    background-color: #f7f7f7;
+  td.today { background: var(--accent-soft); }
+
+  /* Mobile day view */
+  .day-tabs {
+    display: none;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    margin-bottom: 14px;
   }
-  .changed {
-    outline: 1.5px dotted #333;
-    outline-offset: -2px;
+  .day-tabs button {
+    flex: 0 0 auto;
+    font-family: 'Nunito', Arial, sans-serif;
+    font-weight: 800;
+    font-size: 13.5px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
   }
-  .footer-row {
+  .day-tabs button.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .day-tabs button.is-today:not(.active) {
+    box-shadow: inset 0 0 0 2px var(--today-ring);
+  }
+
+  .day-list { display: none; flex-direction: column; gap: 8px; }
+  .day-list .lesson-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+  }
+  .day-list .lesson-row.changed {
+    background: var(--changed-bg);
+    border-color: var(--changed-border);
+  }
+  .lesson-row .n {
+    font-weight: 800;
+    color: var(--muted);
+    width: 18px;
     text-align: center;
-    margin-top: 6px;
-    font-size: 14px;
-    letter-spacing: 8px;
-    opacity: 0.7;
   }
-  .corner {
-    position: absolute;
-    font-size: 15px;
+  .lesson-row .t {
+    font-weight: 800;
+    font-size: 12px;
+    color: var(--muted);
+    width: 74px;
   }
-  .corner.tl { top: 4px; left: 8px; }
-  .corner.tr { top: 4px; right: 8px; }
-  .corner.bl { bottom: 4px; left: 8px; }
-  .corner.br { bottom: 4px; right: 8px; }
-  .legend {
+  .lesson-row .s {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 14.5px;
+  }
+  .lesson-row .s .emoji { font-size: 18px; }
+  .lesson-row .pill {
+    margin-left: auto;
+    font-size: 10.5px;
+    font-weight: 800;
+    color: #8a5b00;
+    background: #ffe6a3;
+    padding: 3px 8px;
+    border-radius: 999px;
+  }
+  @media (prefers-color-scheme: dark) {
+    .lesson-row .pill { color: #3a2a00; }
+  }
+
+  @media (max-width: 760px) {
+    table.desktop-table { display: none; }
+    .day-tabs { display: flex; }
+    .day-list.active { display: flex; }
+  }
+
+  footer {
     text-align: center;
-    font-size: 9px;
-    margin-top: 4px;
-    color: #555;
+    color: var(--muted);
+    font-size: 12.5px;
+    margin-top: 28px;
   }
+
+  noscript .card { text-align: center; }
 </style>
 </head>
 <body>
 
-<div class="frame">
-  <span class="corner tl">✏️</span>
-  <span class="corner tr">📏</span>
-  <span class="corner bl">🖍️</span>
-  <span class="corner br">📚</span>
+<div class="wrap">
+  <header class="hero">
+    <span class="badge">🎒 2-Б клас</span>
+    <h1>Розклад уроків</h1>
+    <p class="subtitle">хай кожен день буде цікавим! ✨</p>
+    <div class="update-note" id="updateNote">Оновлено: зміни в розкладі понеділка (14.09) та вівторка (15.09) — позначені кольором</div>
+    <div class="actions">
+      <a class="btn btn-primary" href="schedule-print.html" target="_blank" rel="noopener">🖨️ Версія для друку</a>
+    </div>
+  </header>
 
-  <div class="stars-top">★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★</div>
-  <h1><span class="deco">🎒</span> Розклад уроків 2-Б клас <span class="deco">🎨</span></h1>
-  <div class="subtitle">~ хай кожен день буде цікавим! ~</div>
-  <div class="update-note">Оновлено: зміни в розкладі понеділка (14.09) та вівторка (15.09) — позначені пунктирною рамкою</div>
+  <main class="card">
+    <div class="day-tabs" id="dayTabs"></div>
+    <div id="dayLists"></div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>№</th>
-        <th>Дзвінки</th>
-        <th>Понеділок</th>
-        <th>Вівторок</th>
-        <th>Середа</th>
-        <th>Четвер</th>
-        <th>П'ятниця</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td class="time">8:15–8:40</td>
-        <td class="changed"><div class="subject"><span class="emoji">🤝</span>Коло друзів</div></td>
-        <td class="changed"><div class="subject"><span class="emoji">🤝</span>Коло друзів</div></td>
-        <td><div class="subject"><span class="emoji">🤝</span>Коло друзів</div></td>
-        <td><div class="subject"><span class="emoji">🤝</span>Коло друзів</div></td>
-        <td><div class="subject"><span class="emoji">🤝</span>Коло друзів</div></td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td class="time">8:55–9:30</td>
-        <td class="changed"><div class="subject"><span class="emoji">🔢</span>Математика</div></td>
-        <td class="changed"><div class="subject"><span class="emoji">🔢</span>Математика</div></td>
-        <td><div class="subject"><span class="emoji">🔢</span>Математика</div></td>
-        <td><div class="subject"><span class="emoji">🔢</span>Математика</div></td>
-        <td><div class="subject"><span class="emoji">🎵</span>Музика</div></td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td class="time">9:45–10:20</td>
-        <td class="changed"><div class="subject"><span class="emoji">🌱</span>ЯДС</div></td>
-        <td class="changed"><div class="subject"><span class="emoji">📖</span>Укр. мова</div></td>
-        <td><div class="subject"><span class="emoji">📕</span>Укр. чит.</div></td>
-        <td><div class="subject"><span class="emoji">⚽</span>Фізкультура</div></td>
-        <td><div class="subject"><span class="emoji">🔢</span>Математика</div></td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td class="time">10:35–11:10</td>
-        <td class="changed"><div class="subject"><span class="emoji">📖</span>Укр. мова</div></td>
-        <td class="changed"><div class="subject"><span class="emoji">📕</span>Укр. чит.</div></td>
-        <td><div class="subject"><span class="emoji">🌍</span>Англ. мова</div></td>
-        <td><div class="subject"><span class="emoji">🖌️</span>Образотв. мист.</div></td>
-        <td><div class="subject"><span class="emoji">📕</span>Укр. чит.</div></td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td class="time">11:20–11:55</td>
-        <td class="changed"><div class="subject"><span class="emoji">💻</span>Інформатика</div></td>
-        <td class="changed"><div class="subject"><span class="emoji">⚽</span>Фізкультура</div></td>
-        <td><div class="subject"><span class="emoji">📖</span>Укр. мова</div></td>
-        <td><div class="subject"><span class="emoji">🌍</span>Англ. мова</div></td>
-        <td><div class="subject"><span class="emoji">💃</span>Хореографія</div></td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td class="time">12:15–12:50</td>
-        <td class="changed"><div class="subject"><span class="emoji">📕</span>Укр. чит.</div></td>
-        <td class="changed"><div class="subject"><span class="emoji">🌍</span>Англ. мова</div></td>
-        <td><div class="subject"><span class="emoji">🌱</span>ЯДС</div></td>
-        <td><div class="subject"><span class="emoji">📖</span>Укр. мова</div></td>
-        <td><div class="subject"><span class="emoji">⏰</span>Дин. година</div></td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td class="time">13:05–13:40</td>
-        <td class="changed"><div class="subject"><span class="emoji">🛡️</span>Самозахист(х)</div></td>
-        <td class="changed"><div class="subject"><span class="emoji">🎵</span>Музика</div></td>
-        <td><div class="subject"><span class="emoji">🎨</span>Арт-терапія</div></td>
-        <td><div class="subject"><span class="emoji">📚</span>Позакласне чит.</div></td>
-        <td><div class="subject"><span class="emoji">🌱</span>ЯДС</div></td>
-      </tr>
-    </tbody>
-  </table>
+    <table class="desktop-table">
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>Дзвінки</th>
+          <th>Понеділок</th>
+          <th>Вівторок</th>
+          <th>Середа</th>
+          <th>Четвер</th>
+          <th>П'ятниця</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
 
-  <div class="legend">пунктирна рамка навколо клітинки = змінено з 14–15.09</div>
-  <div class="footer-row">✎ ✿ ✎ ✿ ✎ ✿ ✎ ✿ ✎ ✿ ✎</div>
-  <div class="stars-bottom">★ ☆ ★ ☆ ★ ☆ ★ ☆ ★ ☆ ★</div>
+    <div class="legend"><span class="swatch"></span> позначено клітинки, змінені з 14–15.09</div>
+  </main>
+
+  <noscript>
+    <div class="card" style="margin-top:16px;">
+      Для перегляду розкладу увімкніть JavaScript, або відкрийте
+      <a href="schedule-print.html">версію для друку</a>.
+    </div>
+  </noscript>
+
+  <footer>Розклад складено з любов'ю ✿</footer>
 </div>
+
+<script>
+(function () {
+  var times = ["8:15–8:40","8:55–9:30","9:45–10:20","10:35–11:10","11:20–11:55","12:15–12:50","13:05–13:40"];
+
+  var days = [
+    { name: "Понеділок", short: "Пн", lessons: [
+      {emoji:"🤝", subject:"Коло друзів", changed:true},
+      {emoji:"🔢", subject:"Математика", changed:true},
+      {emoji:"🌱", subject:"ЯДС", changed:true},
+      {emoji:"📖", subject:"Укр. мова", changed:true},
+      {emoji:"💻", subject:"Інформатика", changed:true},
+      {emoji:"📕", subject:"Укр. чит.", changed:true},
+      {emoji:"🛡️", subject:"Самозахист(х)", changed:true}
+    ]},
+    { name: "Вівторок", short: "Вт", lessons: [
+      {emoji:"🤝", subject:"Коло друзів", changed:true},
+      {emoji:"🔢", subject:"Математика", changed:true},
+      {emoji:"📖", subject:"Укр. мова", changed:true},
+      {emoji:"📕", subject:"Укр. чит.", changed:true},
+      {emoji:"⚽", subject:"Фізкультура", changed:true},
+      {emoji:"🌍", subject:"Англ. мова", changed:true},
+      {emoji:"🎵", subject:"Музика", changed:true}
+    ]},
+    { name: "Середа", short: "Ср", lessons: [
+      {emoji:"🤝", subject:"Коло друзів"},
+      {emoji:"🔢", subject:"Математика"},
+      {emoji:"📕", subject:"Укр. чит."},
+      {emoji:"🌍", subject:"Англ. мова"},
+      {emoji:"📖", subject:"Укр. мова"},
+      {emoji:"🌱", subject:"ЯДС"},
+      {emoji:"🎨", subject:"Арт-терапія"}
+    ]},
+    { name: "Четвер", short: "Чт", lessons: [
+      {emoji:"🤝", subject:"Коло друзів"},
+      {emoji:"🔢", subject:"Математика"},
+      {emoji:"⚽", subject:"Фізкультура"},
+      {emoji:"🖌️", subject:"Образотв. мист."},
+      {emoji:"🌍", subject:"Англ. мова"},
+      {emoji:"📖", subject:"Укр. мова"},
+      {emoji:"📚", subject:"Позакласне чит."}
+    ]},
+    { name: "П'ятниця", short: "Пт", lessons: [
+      {emoji:"🤝", subject:"Коло друзів"},
+      {emoji:"🎵", subject:"Музика"},
+      {emoji:"🔢", subject:"Математика"},
+      {emoji:"📕", subject:"Укр. чит."},
+      {emoji:"💃", subject:"Хореографія"},
+      {emoji:"⏰", subject:"Дин. година"},
+      {emoji:"🌱", subject:"ЯДС"}
+    ]}
+  ];
+
+  // JS getDay(): 0 Sun ... 6 Sat. Map Mon-Fri (1-5) to days[0-4].
+  var jsDay = new Date().getDay();
+  var todayIndex = (jsDay >= 1 && jsDay <= 5) ? jsDay - 1 : -1;
+
+  function el(tag, attrs, children) {
+    var e = document.createElement(tag);
+    if (attrs) for (var k in attrs) {
+      if (k === 'class') e.className = attrs[k];
+      else if (k === 'text') e.textContent = attrs[k];
+      else e.setAttribute(k, attrs[k]);
+    }
+    (children || []).forEach(function (c) { e.appendChild(c); });
+    return e;
+  }
+
+  // Build desktop table
+  var tbody = document.getElementById('tableBody');
+  times.forEach(function (time, rowIdx) {
+    var tr = document.createElement('tr');
+    tr.appendChild(el('td', { class: 'num', text: String(rowIdx + 1) }));
+    tr.appendChild(el('td', { class: 'time', text: time }));
+    days.forEach(function (day, dIdx) {
+      var lesson = day.lessons[rowIdx];
+      var classes = [];
+      if (lesson.changed) classes.push('changed');
+      if (dIdx === todayIndex) classes.push('today');
+      var subjectCell = el('div', { class: 'subject-cell' }, [
+        el('span', { class: 'emoji', text: lesson.emoji }),
+        el('span', { class: 'name', text: lesson.subject })
+      ]);
+      tr.appendChild(el('td', { class: classes.join(' ') }, [subjectCell]));
+    });
+    tbody.appendChild(tr);
+  });
+  var headCells = document.querySelectorAll('.desktop-table thead th');
+  if (todayIndex >= 0) headCells[todayIndex + 2].classList.add('today-col');
+
+  // Build mobile tabs + day lists
+  var tabsWrap = document.getElementById('dayTabs');
+  var listsWrap = document.getElementById('dayLists');
+
+  days.forEach(function (day, dIdx) {
+    var isToday = dIdx === todayIndex;
+    var tabBtn = el('button', { type: 'button', text: day.short });
+    if (isToday) tabBtn.classList.add('is-today');
+    tabBtn.addEventListener('click', function () { selectDay(dIdx); });
+    tabsWrap.appendChild(tabBtn);
+
+    var list = el('div', { class: 'day-list' });
+    day.lessons.forEach(function (lesson, i) {
+      var row = el('div', { class: 'lesson-row' + (lesson.changed ? ' changed' : '') }, [
+        el('span', { class: 'n', text: String(i + 1) }),
+        el('span', { class: 't', text: times[i] }),
+        el('span', { class: 's' }, [
+          el('span', { class: 'emoji', text: lesson.emoji }),
+          el('span', { text: lesson.subject })
+        ])
+      ]);
+      if (lesson.changed) row.appendChild(el('span', { class: 'pill', text: 'Змінено' }));
+      list.appendChild(row);
+    });
+    listsWrap.appendChild(list);
+  });
+
+  function selectDay(idx) {
+    tabsWrap.querySelectorAll('button').forEach(function (b, i) {
+      b.classList.toggle('active', i === idx);
+    });
+    listsWrap.querySelectorAll('.day-list').forEach(function (l, i) {
+      l.classList.toggle('active', i === idx);
+    });
+  }
+
+  selectDay(todayIndex >= 0 ? todayIndex : 0);
+})();
+</script>
 
 </body>
 </html>
